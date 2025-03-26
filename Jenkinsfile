@@ -19,10 +19,10 @@ pipeline {
                     # Affiche les versions installées
                     pip list
                     python -m robot --version
-                    // #pip can install a package ignoring the cache
-                    // pip --no-cache-dir install scipy
-                    // # Sauvegarde les dépendances
-                    // pip freeze > requirements.txt
+                     #pip can install a package ignoring the cache
+                    # pip --no-cache-dir install scipy
+                     # Sauvegarde les dépendances
+                    # pip freeze > requirements.txt
                 '''
             }
         }
