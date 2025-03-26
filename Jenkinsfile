@@ -12,7 +12,7 @@ pipeline {
 
         stage('Compile project') {
             steps {
-                sh "pip freeze > requierements.txt"
+                sh "pip freeze > requirements.txt"
                 sh "pip3 install -r requirements.txt"
                 sh "pip list"
             }
