@@ -14,7 +14,7 @@ pipeline {
                 sh "pip freeze > requirements.txt"
                 sh "pip3 install -r requirements.txt"
                 sh "pip list"
-                sh "python3 -m robot tests\login_avec_template.robot"
+                sh "python3 -m robot -d tests\login_avec_template_data.robot"
             }
         }
         
