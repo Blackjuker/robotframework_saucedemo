@@ -11,9 +11,7 @@ pipeline {
         stage('Compile project') {
             steps {
               sh '''
-                    # Créer et activer un environnement virtuel Python
-                    python3 -m venv venv
-                    . venv/bin/activate
+                    
 
                     # Installer les dépendances dans le venv (avec droits)
                     pip install --upgrade pip --no-cache-dir
