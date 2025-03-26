@@ -10,13 +10,22 @@ pipeline {
 
         stage('Compile project') {
             steps {
-                sh "python3 -m venv venv"                
-                sh ". venv/bin/activate"
-                sh "pip install robotframework --no-cache-dir"
-                sh "pip freeze > requirements.txt"
-                sh "pip3 install -r requirements.txt"
-                sh "pip list"
-                sh script: "robot --nostatusrc ./tests/login_avec_template_data.robot", returnStatus: true
+              sh '''
+                    # Créer et activer un environnement virtuel Python
+                    python3 -m venv venv
+                    . venv/bin/activate
+
+                    # Installer les dépendances dans le venv (avec droits)
+                    pip install --upgrade pip --no-cache-dir
+                    pip install robotframework --no-cache-dir
+
+                    # Vérification
+                    pip list
+                    python -m robot --version
+
+                    # Lancer les tests robot
+                    robot --nostatusrc --outputdir results ./tests/login/login_avec_template_data.robot
+                '''
             }
         }        
 
