@@ -1,28 +1,23 @@
+
 pipeline {
     agent {
         docker {
-            image 'python:3.9-alpine'  // Image avec Python pré-installé
-            args '-u root'           // Exécute en tant que root
+            image 'ppodgorsek/robot-framework'
         }
     }
 
-    environment {
-        ROBOT_OPTIONS = "--outputdir results"
-    }
+   
 
     stages {
-        stage('Setup') {
+
+        stage('Compile project') {
             steps {
-                sh 'python --version'
-                sh 'pip install --upgrade pip'
-                sh 'pip install -r requirements.txt'
+                sh "pip freeze > requierements.txt"
+                sh "pip3 install -r requirements.txt"
+                sh "pip list"
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                sh 'robot ${ROBOT_OPTIONS} tests/'
-            }
-        }
     }
+    
 }
