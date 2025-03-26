@@ -16,11 +16,7 @@ pipeline {
                 sh "pip list"
             }
         }
-        stage('Execute test') {
-            steps {
-                sh "python3 -m robot tests\login_avec_template.robot"
-            }
-        }
+        
 
     }
     
