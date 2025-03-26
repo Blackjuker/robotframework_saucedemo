@@ -16,7 +16,7 @@ pipeline {
                     # Installer les dépendances dans le venv (avec droits)
                     pip install --upgrade pip --no-cache-dir
                     pip install robotframework --no-cache-dir
-
+                    pip install --user -r requirements.txt --no-cache-dir
                     # Vérification
                     pip list
                     python -m robot --version
