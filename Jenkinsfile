@@ -1,8 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.9'
-            args '-u root'
+            image 'python:3.9-alpine'  // Image avec Python pré-installé
+            args '-u root'  // Exécute en tant que root
         }
     }
 
@@ -11,7 +11,7 @@ pipeline {
     }
 
     stages {
-        stage('Préparation') {
+        stage('Setup') {
             steps {
                 sh 'python --version'
                 sh 'pip install --upgrade pip'
@@ -19,18 +19,11 @@ pipeline {
             }
         }
 
-        stage('Exécution des tests') {
+        stage('Run Tests') {
             steps {
                 sh 'robot ${ROBOT_OPTIONS} tests/'
             }
         }
     }
 
-    // post {
-    //     always {
-    //         archiveArtifacts artifacts: 'results/*/'
-    //         // Alternative si le plugin Robot n'est pas installé
-    //         junit 'results/output.xml'
-    //     }
-    // }
 }
