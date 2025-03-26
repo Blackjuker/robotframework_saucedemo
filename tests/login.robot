@@ -2,7 +2,7 @@
 Library    SeleniumLibrary
 Library    .venv/Lib/site-packages/robot/libraries/XML.py
 Library    .venv/Lib/site-packages/robot/libraries/String.py
-Resource    Pages/login.resource
+Resource    ../Pages/login.resource
 
 
 *** Test Cases ***
