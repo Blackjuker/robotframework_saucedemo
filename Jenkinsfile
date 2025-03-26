@@ -20,7 +20,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'python3 -m robot --outputdir results login.robot'
+                sh 'python3 -m robot --outputdir results ./tests/hello.robot'
             }
         }
         
