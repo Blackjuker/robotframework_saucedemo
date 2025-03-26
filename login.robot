@@ -9,7 +9,7 @@ Resource    Pages/login.resource
 Login Avec Cridentials Corrects
     [Documentation]    Login avec credentials Corrects
     [Tags]    @regresssion @smoke
-    Open Browser    https://www.saucedemo.com/    Chrome
+    Open Browser    https://www.saucedemo.com/    Chrome    remote_url=http://192.168.1.119:4444/wd/hub
     Saisir Username    standard_user
     Saisir Password    secret_sauce    
     Click Login
@@ -21,7 +21,7 @@ Login Avec Cridentials Corrects
 Login Avec Cridentials Incorrect Username
     [Documentation]    Login avec credentials Corrects
     [Tags]    @smoke
-    Open Browser    https://www.saucedemo.com/    Chrome
+    Open Browser    https://www.saucedemo.com/    Chrome    remote_url=http://192.168.1.119:4444/wd/hub
     Saisir Username    standard_users
     Saisir Password    secret_sauce    
     Click Login

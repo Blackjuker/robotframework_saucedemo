@@ -24,7 +24,7 @@ pipeline {
                     python -m robot --version
 
                     # Lancer les tests robot
-                    robot --nostatusrc --outputdir results ./tests/hello.robot
+                    robot --nostatusrc --outputdir results login.robot
                 '''
             }
         }        
