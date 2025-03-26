@@ -14,14 +14,14 @@ pipeline {
                     # Active le venv dans le même shell
                     . venv/bin/activate
                     # Met à jour pip et installe les dépendances
-                    pip install --upgrade pip   --no-cache-dir
+                    pip install --upgrade pip --no-cache-dir
                     pip install robotframework --no-cache-dir
                     # Affiche les versions installées
                     pip list
                     python -m robot --version
-                     #pip can install a package ignoring the cache
+                    # pip peut installer d'autres packages si besoin
                     # pip --no-cache-dir install scipy
-                     # Sauvegarde les dépendances
+                    # Sauvegarde des dépendances si besoin
                     # pip freeze > requirements.txt
                 '''
             }
