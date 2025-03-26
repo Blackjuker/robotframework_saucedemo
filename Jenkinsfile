@@ -29,7 +29,7 @@ pipeline {
                     // sh 'pip install robotframework'
                     // sh ' .venv/Scripts/Activate.ps1 '
                     // sh 'robot --version'
-                    sh 'python3 -m robot tests/login.robot'
+                    sh 'python3 -m robot login.robot'
                 }
             }
         }
