@@ -14,7 +14,7 @@ pipeline {
                 sh "pip freeze > requirements.txt"
                 sh "pip3 install -r requirements.txt"
                 sh "pip list"
-                sh script: "robot --nostatusrc tests\login_avec_template_data.robot", returnStatus: true
+                sh script: "robot --nostatusrc ./tests/login_avec_template_data.robot", returnStatus: true
             }
         }
         
