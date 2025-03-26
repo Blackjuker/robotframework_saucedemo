@@ -14,12 +14,9 @@ pipeline {
                     pip install --upgrade pip --no-cache-dir
                     pip install robotframework --no-cache-dir
 
-                    # si tu as un fichier requirements.txt :
-                    if [ -f requirements.txt ]; then
-                        pip install -r requirements.txt --no-cache-dir
-                    fi
-
                     pip list
+
+                    # Exécution du test Robot Framework
                     ./venv/bin/robot --nostatusrc --outputdir results ./tests/login/login_avec_template_data.robot
                 '''
             }
