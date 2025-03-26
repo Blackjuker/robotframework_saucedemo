@@ -17,7 +17,13 @@ pipeline {
                stage('Install Dependencies') {
             steps {
                    // sh '.venv/Scripts/activate.ps1'
-                sh 'pip install -r requirements.txt --no-cache-dir'
+                   sh '''
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt --no-cache-dir
+        '''
+
              }
         }
 
@@ -29,7 +35,10 @@ pipeline {
                     // sh 'pip install robotframework'
                     // sh ' .venv/Scripts/Activate.ps1 '
                     // sh 'robot --version'
-                    sh 'python3 -m robot login.robot'
+                     sh '''
+            . venv/bin/activate
+            python3 -m robot --variable SELENIUM_GRID_URL:$SELENIUM_GRID_URL login.robot
+        '''
                 }
             }
         }
