@@ -24,7 +24,7 @@ pipeline {
                     python -m robot --version
 
                     # Lancer les tests robot
-                    robot --nostatusrc --outputdir results ./tests/login/login_avec_template_data.robot
+                    robot --nostatusrc --outputdir results ./tests/login_avec_template_data.robot
                 '''
             }
         }        
