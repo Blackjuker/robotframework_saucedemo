@@ -30,4 +30,9 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            robot outputPath: '.', passThreshold: 80.0, unstableThreshold: 70.0
+        }
+    }
 }
