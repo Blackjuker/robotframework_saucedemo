@@ -17,7 +17,7 @@ pipeline {
                stage('Install Dependencies') {
             steps {
                    // sh '.venv/Scripts/activate.ps1'
-                sh 'pip install -r requirements.txt --no-cache-dir'
+                 sh 'sudo pip install -r requirements.txt --no-cache-dir'
              }
         }
 
