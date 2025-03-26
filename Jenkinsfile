@@ -1,37 +1,37 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.11'
+            image 'ppodgorsek/robot-framework'
+            args '--network=host'  // Permet d'accéder à Selenium Grid
+
+
         }
     }
-   
+
+    environment {
+        SELENIUM_GRID_URL = "http://192.168.1.55:4444/wd/hub"
+    }
+
 
     stages {
-
-        stage('Compile project') {
+               stage('Install Dependencies') {
             steps {
-              sh '''
-                    
+                   // sh '.venv/Scripts/activate.ps1'
+                sh 'pip install --user -r requirements.txt --no-cache-dir'
+             }
+        }
 
-                    # Installer les dépendances dans le venv (avec droits)
-                    pip install --upgrade pip --no-cache-dir
-                    pip install robotframework --no-cache-dir
-                    pip install --user -r requirements.txt --no-cache-dir
-                    # Vérification
-                    pip list
-                    python -m robot --version
-
-                    # Lancer les tests robot
-                    robot --nostatusrc --outputdir results login.robot
-                '''
+        stage('Run Tests') {
+            steps {
+                script {
+                    // sh 'echo "SELENIUM_GRID_URL: $SELENIUM_GRID_URL"'
+                   // sh '.venv/Scripts/activate.ps1'
+                    // sh 'pip install robotframework'
+                    // sh ' .venv/Scripts/Activate.ps1 '
+                    // sh 'robot --version'
+                    sh 'python3 -m robot tests/login.robot'
+                }
             }
-        }        
-
-    }
-    post {
-        always {
-            robot outputPath: 'results', passThreshold: 80.0, unstableThreshold: 70.0
         }
     }
-    
-} 
+}
