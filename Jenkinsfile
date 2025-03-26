@@ -2,21 +2,31 @@ pipeline {
     agent {
         docker {
             image 'ppodgorsek/robot-framework'
-            args '--network=host -u root'  // Run as root to avoid permission issues
+            args '--network=host -u root'
         }
     }
 
-    pipeline {
-    agent {
-        docker {
-            image 'ppodgorsek/robot-framework'
-            args '--network=host -u root'  // Run as root to avoid permission issues
-        }
+    parameters {
+        string(
+            name: 'TAGS',
+            defaultValue: '',
+            description: 'Tags à exécuter (séparés par des virgules, ex: smoke,regression)'
+        )
+        string(
+            name: 'EXCLUDE_TAGS',
+            defaultValue: '',
+            description: 'Tags à exclure (séparés par des virgules)'
+        )
+        string(
+            name: 'TEST_SUITE',
+            defaultValue: './tests',
+            description: 'Chemin vers le fichier/dossier de test'
+        )
     }
 
     environment {
         SELENIUM_GRID_URL = "http://192.168.1.119:4444/wd/hub"
-        PYTHONPATH = "/usr/local/lib/python3.12/site-packages"  // Ensure Python can find installed packages
+        PYTHONPATH = "/usr/local/lib/python3.12/site-packages"
     }
 
     stages {
@@ -26,41 +36,6 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                sh 'python3 -m robot --outputdir results ./tests/login.robot'
-            }
-        }
-        
-        stage('Archive Results') {
-            steps {
-                archiveArtifacts artifacts: 'results/**/*'
-            }
-        }
-    }
-    post {
-        always {
-            robot outputPath: '.', passThreshold: 80.0, unstableThreshold: 70.0
-        }
-    }
-}
-    environment {
-        SELENIUM_GRID_URL = "http://192.168.1.119:4444/wd/hub"
-        PYTHONPATH = "/usr/local/lib/python3.12/site-packages"  // Ensure Python can find installed packages
-    }
-
-    stages {
-        stage('Install Dependencies') {
-            steps {
-                sh 'pip install -r requirements.txt --no-cache-dir'
-            }
-        }
-
-        // stage('Run Tests') {
-        //     steps {
-        //         sh 'python3 -m robot --outputdir results ./tests/login.robot'
-        //     }
-        // }
         stage('Run Tests') {
             steps {
                 script {
@@ -86,9 +61,10 @@ pipeline {
             }
         }
     }
+    
     post {
         always {
-            robot outputPath: '.', passThreshold: 80.0, unstableThreshold: 70.0
+            robot outputPath: 'results', passThreshold: 80.0, unstableThreshold: 70.0
         }
     }
 }
