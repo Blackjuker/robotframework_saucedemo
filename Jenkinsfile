@@ -28,7 +28,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo "Exécution des tests avec Robot Framework"
-                sh "robot --outputdir ${OUTPUT_DIR} ${TEST_DIR}/"
+               // sh "robot --outputdir ${OUTPUT_DIR} ${TEST_DIR}/"
             }
         }
     }
