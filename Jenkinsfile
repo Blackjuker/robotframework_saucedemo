@@ -5,19 +5,13 @@ pipeline {
         }
     }
     
-    environment {
-        TEST_DIR = "tests"
-        OUTPUT_DIR = "results"
-    }
-    
+     
     stages {
         stage('Install Dependencies') {
             steps {
                 echo "Génération du fichier requirements.txt et installation des dépendances"
                 // Cette commande capture l'état actuel des packages installés dans le container
                 sh 'pip freeze > requirements.txt'
-                // Mise à jour de pip (optionnel selon les besoins)
-                sh 'pip install --upgrade pip'
                 // Installation des packages à partir du fichier généré
                 sh 'pip install -r requirements.txt'
                 // Affichage de la liste des packages pour vérification
