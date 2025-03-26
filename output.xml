@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.2 on win32)" generated="2025-03-26T13:07:25.149605" rpa="false" schemaversion="5">
+<suite id="s1" name="Hello" source="c:\Users\Arnaud\Documents\Log\Robot_Framework\sauce-demo-robot\tests\hello.robot">
+<test id="s1-t1" name="Hello From Jenkins" line="2">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-26T13:07:25.247692" level="INFO">Hello from Robot Framework in Jenkins!</msg>
+<arg>Hello from Robot Framework in Jenkins!</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-26T13:07:25.246693" elapsed="0.008998"/>
+</kw>
+<status status="PASS" start="2025-03-26T13:07:25.243689" elapsed="0.016527"/>
+</test>
+<status status="PASS" start="2025-03-26T13:07:25.173162" elapsed="0.098597"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Hello" id="s1" pass="1" fail="0" skip="0">Hello</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
