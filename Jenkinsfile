@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'python:3.9-alpine'  // Image avec Python pré-installé
-            args '-u root'  // Exécute en tant que root
+            args '-u root'           // Exécute en tant que root
         }
     }
 
@@ -25,5 +25,4 @@ pipeline {
             }
         }
     }
-
 }
