@@ -4,28 +4,22 @@ pipeline {
             image 'python:3.11'
         }
     }
+   
 
     stages {
-        stage('Compile & Run Robot Test') {
+
+        stage('Compile project') {
             steps {
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install --upgrade pip --no-cache-dir
-                    pip install robotframework --no-cache-dir
-
-                    pip list
-
-                    # Exécution du test Robot Framework
-                    ./venv/bin/robot --nostatusrc --outputdir results ./tests/login/login_avec_template_data.robot
-                '''
+                sh "python3 -m venv venv"
+                sh ". venv/bin/activate"
+                sh "pip freeze > requirements.txt"
+                sh "pip3 install -r requirements.txt"
+                sh "pip list"
+                sh script: "robot --nostatusrc ./tests/login_avec_template_data.robot", returnStatus: true
             }
         }
-    }
+        
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'results/*.*', allowEmptyArchive: true
-        }
     }
-}
+    
+} 
