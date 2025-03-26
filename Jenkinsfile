@@ -17,7 +17,7 @@ pipeline {
                     pip install --upgrade pip --no-cache-dir
                     pip install robotframework --no-cache-dir
                     # Affiche les versions installées
-                    pip list
+                    pip list --no-cache-dir
                     python -m robot --version
                     # pip peut installer d'autres packages si besoin
                     # pip --no-cache-dir install scipy
