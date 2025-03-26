@@ -24,7 +24,7 @@ pipeline {
                     python -m robot --version
 
                     # Lancer les tests robot
-                    robot --nostatusrc --outputdir . ./tests/login_avec_template_data.robot
+                    robot --nostatusrc --outputdir results ./tests/login_avec_template_data.robot
                 '''
             }
         }        
@@ -32,7 +32,7 @@ pipeline {
     }
     post {
         always {
-            robot outputPath: '.', passThreshold: 80.0, unstableThreshold: 70.0
+            robot outputPath: 'results', passThreshold: 80.0, unstableThreshold: 70.0
         }
     }
     
